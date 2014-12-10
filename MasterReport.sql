@@ -41,7 +41,3 @@ where
 adi.barcode = ''
 group by 'Collection', 'Series/Accession Number', Box
 
-/* To just get the components (and related information) associated with a barcode:
-where
-adi.barcode = {{barcode}}
-
