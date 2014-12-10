@@ -1,4 +1,5 @@
 /* Everything one might want to know about digital objects in AT
+/* This report relies on two functions -- getResourcesFromComponents and getTopComponent
 SELECT
 	CONCAT(
 		r.resourceIdentifier1
