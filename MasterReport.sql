@@ -1,13 +1,13 @@
 /* This report pulls information from the resources table, the components table, the instances table and the locations table. 
-/* This report assumes access to two saved functions -- getResourceFromComponent and getTopComponent
+This report assumes access to two saved functions -- getResourceFromComponent and getTopComponent */
 select 
     concat(r.resourceIdentifier1,
             ' ',
             lpad(r.resourceIdentifier2, 4, '00')) 'Collection',
-            /* creating padded call number
+            /* creating padded call number */
     r.title 'Collection Title',
     series.subdivisionIdentifier 'Series/Accession Number',
-    /* later, the components table joins on itself to make the series table
+    /* later, the components table joins on itself to make the series table */
     series.title 'Series Title',
     rc.title 'Component Title',
     rc.dateExpression 'Component Date',
@@ -24,7 +24,7 @@ select
     loc.room,
     coalesce(loc.coordinate1NumericIndicator,
             loc.coordinate1AlphaNumIndicator) Shelf
-            /* more-detailed information about locations may be stored in the table, but since it isn't used at Yale, it isn't included in this report.
+            /* more-detailed information about locations may be stored in the table, but since it isn't used at Yale, it isn't included in this report. */
 from
     ArchDescriptionInstances adi
         inner join
@@ -36,7 +36,7 @@ from
         left outer join
     ResourcesComponents series ON getTopComponent(rc.resourceComponentId) = series.resourceComponentID
 
-/* To see a report of containers missing barcodes, include the following:
+/* To see a report of containers missing barcodes, include the following: */
 where
 adi.barcode = ''
 group by 'Collection', 'Series/Accession Number', Box
