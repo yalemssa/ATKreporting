@@ -19,4 +19,18 @@ from
 where
     adrd.notesEtcTypeId = 8
         and r.resourceIdentifier1 = 'RU'
-order by r.resourceIdentifier2 asc
+order by r.resourceIdentifier2 asc;
+
+select 
+    r.resourceIdentifier1,
+    r.resourceIdentifier2,
+    r.title,
+    adrd.noteContent
+from
+    ArchDescriptionRepeatingData adrd
+        join
+Resources r on adrd.resourceId = r.resourceId
+where
+    adrd.notesEtcTypeId = 8
+        and r.resourceIdentifier1 = 'RU'
+order by r.resourceIdentifier2 asc;
